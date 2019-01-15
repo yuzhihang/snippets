@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container {
+            display:flex;
+        }
+
+        #main {
+            overflow:hidden;
+            order: 2;
+            flex: 1 1;
+            background-color: yellow;
+        }
+
+        #left{
+            order:1;
+            flex: 0 0 200px;
+            background-color: red;
+        }
+
+        #right {
+            order: 3;
+            flex: 0 0 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <article id="main">
+        dflajflajflajflalongonlflafjlajflajdflajflajflajflalongonlflafjlajflajdflajfl
+        ajflajflalongonlflafjlajflajdflajflajflajflalongonlflafjlajflaj
+    </article>
+    <aside id="left">left</aside>
+    <aside id="right">right</aside>
+</div>
+</body>
+</html>
