@@ -1,0 +1,209 @@
+/*
+https://www.smashingmagazine.com/2013/08/absolute-horizontal-vertical-centering-css/
+*/
+.Absolute-Center {
+    display: flex; // make us of Flexbox
+align-items: center; // does vertically center the desired content
+justify-content: center; // horizontally centers single line items
+text-align: center; // optional, but helps horizontally center text that breaks into multiple lines
+}
+
+
+/*
+ADVANTAGES:
+Cross-browser (including IE8-10)
+No special markup, minimal styles
+Responsive with percentages and min-/max-
+Use one class to center any content
+Centered regardless of padding (without box-sizing!)
+Blocks can easily be resized
+Works great on images
+CAVEATS:
+Height must be declared (see Variable Height)
+Recommend setting overflow: auto to prevent content spillover (see Overflow)
+Doesn’t work on Windows Phone
+ */
+.Absolute-Center {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+/*
+Within Container
+ */
+
+.Center-Container {
+    position: relative;
+}
+
+.Absolute-Center {
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+/*Within Viewport*/
+.Absolute-Center.is-Fixed {
+    position: fixed;
+    z-index: 999;
+}
+/*
+If you have a fixed header or need to add other offsets, simply add it in your content block’s styles like top: 70px;. As long as margin: auto; is declared, the content block will be vertically centered within the bounds you declare with top left bottom and right.
+
+You can also stick your content block to the right or left while keeping it vertically centered, using right: 0; left: auto; to stick to the right or left: 0; right: auto; to stick to the left.
+ */
+
+.Absolute-Center.is-Right {
+    left: auto; right: 20px;
+    text-align: right;
+}
+
+.Absolute-Center.is-Left {
+    right: auto; left: 20px;
+    text-align: left;
+}
+/*
+<img src="http://placekitten.com/g/500/200" class="Absolute-Center is-Image" alt="" />
+Images work too! Apply the class/style to the image itself and set height: auto; like you would with a responsively-sized image to let it resize with the container.
+
+Note that height: auto; works for images, but causes a regular content block to stretch to fill the container unless you use the variable height technique. It’s likely that because browsers have to calculate the height for the image rendered image, so margin: auto; ends up working as if you’d declared the height in all tested browsers.
+*/
+.Absolute-Center.is-Image {
+    height: auto;
+}
+
+.Absolute-Center.is-Image img {
+    width: 100%;
+    height: auto;
+}
+
+/*
+Negative Margins
+Perhaps the most common technique. If exact dimensions are known, setting a negative margin equal to half the width/height (plus padding, if not using box-sizing: border-box) along with top: 50%; left: 50%; will center the block within a container.
+
+It should be noted that this is the only method tested that worked as expected in IE6-7.
+
+ADVANTAGES:
+Works well cross-browser, including IE6-7
+Requires minimal code
+CAVEATS:
+Not responsive. Doesn’t work for percentage based dimensions and can’t set min-/max-
+Content can overflow the container
+Have to compensate for padding or use box-sizing: border-box
+ */
+.is-Negative {
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    position: absolute;
+    top: 50%; left: 50%;
+    margin-left: -170px; /* (width + padding)/2 */
+    margin-top: -120px; /* (height + padding)/2 */
+}
+
+/*
+One of the simplest techniques with about the same benefits as Absolute Centering, but supports variable height. Give the content block transform: translate(-50%,-50%) with the required vendor prefixes along with top: 50%; left: 50%; to get it centered.
+
+ADVANTAGES:
+Variable height content
+Requires minimal code
+CAVEATS:
+Won’t work in IE8
+Need vendor prefixes
+Can interfere with other transform effects
+Results in blurry rendering of edges and text in some cases
+ABSOLUTE CENTER, TRANSLATE(-50%,-50%).
+This box is absolutely centered vertically within its container using translate(-50%,-50%).
+ */
+.is-Transformed {
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%; left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+/*
+Table-Cell
+<div class="Center-Container is-Table">
+                                      <div class="Table-Cell">
+                                                             <div class="Center-Block">
+<!-- CONTENT -->
+</div>
+  </div>
+    </div>
+
+    ADVANTAGES:
+Variable height content
+Content overflows by stretching the parent element
+Works well cross-browser
+CAVEATS:
+Requires extra markup
+
+ABSOLUTE CENTER, TABLE/TABLE-CELL.
+This box is absolutely centered vertically within its display: table-cell parent, which is within a display: table container.
+*/
+
+.Center-Container.is-Table { display: table; }
+.is-Table .Table-Cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.is-Table .Center-Block {
+    width: 50%;
+    margin: 0 auto;
+}
+
+/*
+Inline-Block
+<div class="Center-Container is-Inline">
+                                       <div class="Center-Block">
+<!-- CONTENT -->
+</div>
+  </div>
+
+
+  By popular demand: Inline-Block centering. The basic idea is using display: inline-block, vertical-align: middle and a psuedo element to center your content block inside of a container. My implementation has a few new tricks here that I haven’t seen elsewhere that help solve a few issues.
+
+The content block’s width must be declared to be no wider than 100% of the container minus 0.25em if the content is wider than the container. like a block with long paragraph text. Otherwise, the content block will be pushed to the top, which is the reason for using :after. Using :before caused the content to be pushed down 100%!
+
+If your content block needs take up as much available horizontal space as possible, you can add either max-width: 99%;, which works for bigger containers, or max-width: calc(100% - 0.25em) depending on the browsers you support and the width of the container.
+
+The benefits are mostly the same as the Table-Cell technique, but I initially left this method out because it’s very much a hack. Regardless, browser support is great and it proves to be a popular technique.
+
+ADVANTAGES:
+Variable height content
+Content overflows by stretching the parent element
+Works well cross-browser, and can be adapted for IE7 support (view the CSS to see)
+CAVEATS:
+Requires a container
+Relies on margin-left: -0.25em; to horizontally center correctly, but may need to be adjusted for different fonts/sizes
+Content block’s width must be declared to be no wider than 100% of the container minus 0.25em.
+*/
+
+.Center-Container.is-Inline {
+    text-align: center;
+    overflow: auto;
+}
+
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.Center-Container.is-Inline:after {
+    content: ’;
+    height: 100%;
+    margin-left: -0.25em; /* To offset spacing. May vary by font */
+}
+
+.is-Inline .Center-Block {
+    max-width: 99%; /* Prevents issues with long content causes the content block to be pushed to the top */
+    /* max-width: calc(100% - 0.25em) /* Only for IE9+ */
+}
