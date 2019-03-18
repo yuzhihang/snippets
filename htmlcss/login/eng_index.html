@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<link title=css1 href="./css/default.css" type=text/css rel=stylesheet>
+				<link title=css1 href="./css/defaultpush.css" type=text/css rel=stylesheet>
+				<link title=css1 href="./css/welcome.css" type=text/css rel=stylesheet>
+				<link title=css1 href="./css/readservice.css" type=text/css rel=stylesheet />
+				<link title=css1 href="./css/public.css?t=369" type=text/css rel=stylesheet>
+				<script type="text/javascript" src="./js/jquery.min.js?ver=1.8.3"></script>
+				<script type="text/javascript" src="./js/niftycube.js"></script>
+				<script type="text/javascript" src="./js/crypt.js"></script>
+				<script type="text/javascript" src="./js/netentsec.js"></script>
+				<script type="text/javascript" src="./js/verify.js"></script>
+				<script type="text/javascript" src="./js/wx.js"></script>
+				<script type="text/javascript" src="./js/noticeimage.js"></script>
+				<script type="text/javascript" src="./js/config.js"></script>
+				<!--[if lt IE 9]>
+				    <script type='text/javascript' src='./js/css3-mediaqueries.js'></script>
+				    <script type='text/javascript' src='./js/html5.js'></script>
+				<![endif]-->
+				<!-- LANGUAGE file -->
+				<script type='text/javascript' src='./language/en/errormsg.js'></script>
+				<title>User Authentication System</title>
+				<script type="text/javascript">
+					function switch_lang(page){
+						var local = window.location.href;
+	
+						//To get the filepath
+						var position = local.indexOf('/', 10);
+						var new_local = local.substring(position);
+						
+						window.location.href = new_local.replace('eng_index.html', page);
+					}
+				</script>
+		</head>
+		<body>
+				<form class="form-horizontal" action="/login" method="post" name="loginForm" id="loginForm">
+					<input type=hidden id="uri" name='uri'>
+					<input type=hidden id="terminal" name="terminal" value='pc'>
+					<input type=hidden id="login_type" name="login_type" value=''>
+					<input type=hidden id="check_passwd" name="check_passwd" value="0">
+					<input type=hidden id="show_tip" name='show_tip' value="block">
+					<input type=hidden id="show_change_password" name='show_change_password' value="none">
+					<input type=hidden id="pass_check1" name="pass_check1" value="0">
+                                        <input type=hidden id="pass_check2" name="pass_check2" value="0">
+                                        <input type=hidden id="pass_check3" name="pass_check3" value="0">
+                                        <input type=hidden id="pass_checklong" name="pass_checklong" value="">
+                                        <input type=hidden id="pass_checknum" name="pass_checknum" value="0">
+                                        <input type=hidden id="pass_checkletter" name="pass_checkletter" value="0">
+                                        <input type=hidden id="pass_checkcharacter" name="pass_checkcharacter" value="0">
+                                        <input type=hidden id="short_message" name='short_message' value="none">
+					<input type=hidden id="show_captcha" name='show_captcha' value="none">
+					<input type=hidden id="show_read" name='show_read' value="block">
+					<input type=hidden id="show_assure" name='show_assure' value="none">
+					<input type=hidden id="page_language" name='page_language' value="en">
+					<div class="main">
+							<!--head部分-->
+							<div id="head" class="head_c">
+									<div style="position: absolute; left: 8%;">
+											<div id="head_logo" class="head_logo_c">
+												<img src="./images/logo.jpg?t=737" style="width:155px; height:60px;">
+											</div>
+											<div id="head_divide_line" class="head_divide_line_c"></div>
+											<div id="head_title" class="head_title_c">
+													User Authentication System											</div>
+											<div id="switch_language" class="switch_language_class" style="display:none;">
+												<label class="cLang"><a href=# onclick="switch_lang('index.html');">中文</a>&nbsp;|&nbsp;<span style="color: #3D9CE2 !important; font-weight:900 !important;">English</span></label>
+										  </div>	
+									</div>
+							</div>
+							
+							<!--middle部分-->
+							<div id="middle" class="middle_c middle_show_c">
+															   		<div id="middle_tip" class="middle_tip_c" style="display:block;">
+							   			Internet Notice: <br /><br />1) Please consciously obey the information security provisions established by the company; <br />2) Your Internet access information may be recorded, if there is a breach of regulations, it will be processed according to the company policy and country law; <br />3) If you have any questions in actual use, please contact the network management personnel in time to avoid unnecessary trouble work.<br />							   		</div>
+							    									
+									<div id="middle_form" class="middle_form_c middle_form_show_c">
+											<div class="middle_form_head_c"></div>
+											
+											<div id="middle_message_form" style="display:block;}  ?>;">
+												<div id="username_div" class="control-group username_div_offset" style="height:25px;">
+										      <label class="control-label" for="username">Account: </label>
+										      <div class="controls">
+										        <input type="text" class="input-large" id="username" name="username" placeholder="login account">
+										      </div>
+										    </div>
+										    <div id="assure_phone_div" class="control-group " style="height:25px;display:none;">
+										      <label class="control-label" for="assure_phone">Phone: </label>
+										      <div class="controls">
+										        <input type="text" class="input-large" id="assure_phone" name="assure_phone" value="" placeholder="to receive, confirm">
+										      </div>
+										    </div>
+												<div id="password_div" class="control-group" style="height:25px;">
+													<label class="control-label" for="password1">Password: </label>
+													<div class="controls">
+														<input type="password" class="input-large" id="password1" name="password1" placeholder="password">
+														<input id="password" name="password" type="hidden">
+													</div>
+												</div>
+												<div id="new_password_div" class="change_password_public_div" style="display: none;">
+										      <label class="control-label" for="new_password">New Password: </label>
+										      <div class="controls">
+										        <input type="password" class="input-large" id="new_password" name="new_password" placeholder="new password" value="">
+										      </div>
+										    </div>
+										    <div id="retry_password_div" class="change_password_public_div" style="display: none;">
+										      <label class="control-label" for="retype_newpassword">Retry Password: </label>
+										      <div class="controls">
+										        <input type="password" class="input-large" id="retype_newpassword" name="retype_newpassword" placeholder="repeat the new password" value="">
+										      </div>
+										    </div>
+												<div id="captcha_div" class="change_password_public_div" style="display:none;">
+										      <label class="control-label" for="captcha_value"> Captcha: </label>
+										      <div class="controls">
+										        <input type="text" class="input-medium" id="captcha_value" name="captcha_value" value="" placeholder="captcha">
+										        <img title="change for another" style="cursor:pointer;width:60px;height:27px;" src="/login/captcha.php?rand=1534852112" id='captcha' onclick="refreshCaptcha();">
+										      </div>
+										    </div>
+												<div id="get_password_button_div" class="login_button_div" style="margin-left: 102px;display: none;">
+											      <input id="get_password_button" name="get_password_button" class="middle_form_username_input_mobilepassword_button" style="width:223px;" value="SMS Password" type="button" onclick="get_short_message_password();">
+											  </div>
+												
+												<div id="remember_div" class="remember_div">
+													<div class="controls">
+														<label id="save_user_label" class="checkbox inline" style="*width: 100px;_padding-left:100px;">
+														  <input style="*width: 20px;" id="save_user" name="save_user" value=1 type="checkbox" onclick="if(this.checked==false)form.save_pass.checked=false">mem-Account
+														</label>
+														<label id="save_password_label" class="checkbox inline" style="*width: 100px;">
+														  <input style="*width: 20px;" id="save_pass" name="save_pass" value=1 type="checkbox" onclick="if(this.checked==true)form.save_user.checked=true">mem-Password
+														</label>
+													</div>
+												</div>
+												<div id="read_div" class="read_div" style="height:27px;display:block;">
+													<div class="controls">
+														<label id="read_label" class="checkbox" style="*width: 230px;_padding-left:100px;">
+														  <input style="*width: 20px;" id="read" name="read" value=1 type="checkbox" checked="" onclick="click_readme();"><a href="#" onclick="click_readpage();">I have verified and obey the rules</a>
+														</label>
+													</div>
+												</div>
+												<div id="login_button_div" class="login_button_div login_button_div_offset" style="margin-left: 102px;">
+											      <input type="button" id="submit_button_1" class="middle_form_login_c2" style="width:105px;float: left;" value="Login" onclick="submitbutton('login');">
+											      <a id="change_password_href" href="#" class="change_password_link" onclick="login_page_function_shift('1');" style="padding-left:100px;display:none;">change password</a>
+											  </div>
+												<div id="change_password_button_div" class="login_button_div" style="margin-left: 102px;display: none;">
+											      <input type="button" class="middle_form_login_c2_e" style="width:105px;" value="change" onclick="submitbutton('changepass');">
+											      <a href="#" class="change_password_link" onclick="login_page_function_shift('2');">back login</a>
+											  </div>
+											  <div style="clear:both;"></div>
+											</div>																						  
+										  <div id="wechat" class="wechat_qrcode_bg" style="display:none">
+								  			<div id="qrcode_default_div">
+													<img id="qrcode_img_default" style="cursor:pointer;" src="images/weblogin/en_pre_qrcode.gif" class="qrcode_image_class">
+												</div>
+												<div id="qrcode_div" style="display: none;"></div>
+												<div id="displaychat" class="wechat_displayinfo_class"></div>
+										  </div>
+										  <div id="wechatCaptcha" class="wechat_qrcode_bg" style="display:none">
+									  		<div id="qrcode_captcha_img_div">
+													<img id="qrcode_captcha_img" style="cursor:pointer;" src="images/qrcode/qrcode.jpg" class="qrcode_image_class">
+													</div>
+												<div id="displaychatCaptcha" class="wechat_displayinfo_class"></div>
+										  </div>
+										  <div class="change_password_public_div" style="display:none;">
+									      <label class="control-label" for="wx_captcha">Captcha: </label>
+									      <div class="controls">
+									        <input style="width: 120px;" id="wx_captcha" name="wx_captcha" type="text" value="" placeholder="wechat captcha">
+									        <input type="button" class="middle_form_login_c2" style="width:105px;" value="Login" onclick="submitbutton('qrcode_captcha_login');">
+									      </div>
+									    </div>
+									</div>
+							</div>
+							<!--bottom部分-->
+							<div id="bottom" class="bottom_c">
+									<div style="width: 300px;position: absolute; left: 8%;padding-top:10px;color: #808583;text-align: left;font-size: 8pt; font-family: Microsoft YaHei;">
+											Please contact the administrator if have any problem									</div>
+									<div style="position: absolute; right: 8%;padding-top:10px;color: #808583;font-size: 8pt; font-family: Microsoft YaHei;">
+											Copyright									</div>
+							</div>
+							<div style="margin-top:10px; font-size: 14px;">
+		                <a href="#" onclick="switch_client('mobile');">Phone Edition</a>
+		          </div>
+					</div>
+				</form>
+				<form class="form-horizontal" action="/login" method="post" name="qrcodeForm" id="qrcodeForm">
+					<input type=hidden id="login_type" name="login_type" value='qrcode_login'>
+					<input type=hidden id="qrcode_username" name="qrcode_username" value="">
+					<input type=hidden id="qrcode_scene_id" name="qrcode_scene_id" value="">
+					<input type=hidden id="qrcode_nickname" name="qrcode_nickname" value="">
+					<input type=hidden id="qrcode_uri" name="qrcode_uri" value="">
+					<input type=hidden id="qrcode_page_language" name='qrcode_page_language' value="en">
+				</form>
+				<script>
+						document.getElementById('uri').value=window.location.search.substr(1, window.location.search.length-1);
+						document.getElementById('qrcode_uri').value=window.location.search.substr(1, window.location.search.length-1);
+						if(document.getElementById('wechat') && document.getElementById('wechat').style.display != 'none'){
+								qrcodeInit();
+						}
+						setSave();
+						/**for 认证前页面**/
+					if(WEBLOGIN_CONFIG.basic.check_before_page == 1) {
+						Welcome.run({isWelcome: true,  timeOut: WEBLOGIN_CONFIG.basic.check_before_page_time, url: WEBLOGIN_CONFIG.basic.before_page_index_real.replace("/push/", "/")});
+					}
+							    		$("#middle").attr("class", "middle_c_notice middle_show_c");
+		    			    						if(WEBLOGIN_CONFIG.notice.notice_content_color != '') {
+						$(".middle_tip_c").css('color', WEBLOGIN_CONFIG.notice.notice_content_color);
+					}
+					if(WEBLOGIN_CONFIG.notice.notice_content_font_size != '') {
+						$(".middle_tip_c").css('font-size', WEBLOGIN_CONFIG.notice.notice_content_font_size);
+					}
+					if(WEBLOGIN_CONFIG.notice.notice_bg_color != '') {
+						$(".middle_tip_c").css('background-color', WEBLOGIN_CONFIG.notice.notice_bg_color);
+					}
+					if(WEBLOGIN_CONFIG.basic.grid_title_font_size != '') {
+						$(".head_title_c").css('font-size', WEBLOGIN_CONFIG.basic.grid_title_font_size);
+					}
+					if(WEBLOGIN_CONFIG.basic.grid_title_font_color != '') {
+						$(".head_title_c").css('color', WEBLOGIN_CONFIG.basic.grid_title_font_color);
+					}	
+				</script>
+				<script type="text/javascript" src="/js/weixin_apple.js"></script>
+	  </body>
+</html>
+

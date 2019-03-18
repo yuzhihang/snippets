@@ -1,0 +1,178 @@
+<!DOCTYPE html> 
+<html lang="zh-CN" class="ui-mobile">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>User Authentication System</title>
+<link rel="stylesheet" href="./css/mobi.css" type="text/css" media="screen,print" />
+<link title=css1 href="./css/welcome.css" type=text/css rel=stylesheet>
+<script type="text/javascript" src="./js/netentsec.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/crypt.js"></script>
+<script type="text/javascript" src="./js/config.js"></script>
+<!--[if lt IE 9]>
+    <script type='text/javascript' src='./js/css3-mediaqueries.js'></script>
+    <script type='text/javascript' src='./js/html5.js'></script>
+<![endif]-->
+				<!-- LANGUAGE file -->
+				<script type='text/javascript' src='./language/en/errormsg.js'></script>
+<script>document.documentElement.className += ('ontouchstart' in window) ? ' touch' : ' no-touch'</script>
+<script type="text/javascript">
+	function switch_client(ctype) {		
+		//local is the source url
+		var local = window.location.href;
+		
+		//To get the filepath
+		var position = local.indexOf('/', 10);
+		var new_local = local.substring(position);
+	
+	    //ctype is the destination type of webpage
+	    if (ctype == 'pc') {
+	    		// From 'mobile' to jump to 'pc'
+	    		window.location.href = new_local.replace('mobile_index.html', 'index.html');
+	    }
+	    if (ctype == 'mobile') {
+	    		if(new_local.indexOf('mobile_change_password.html') > 0){
+	    				// From 'mobile_change_password' to jump to 'mobile'
+	    				window.location.href = new_local.replace('mobile_change_password.html', 'mobile_index.html');
+	    		}else if(new_local.indexOf('mobile_get_password.html') > 0){
+	    				// From 'mobile_get_password' to jump to 'mobile'
+	    				window.location.href = new_local.replace('mobile_get_password.html', 'mobile_index.html');
+	    		}else{
+	    				// From 'pc' to jump to 'mobile'
+	    				window.location.href = new_local.replace('index.html', 'mobile_index.html');
+	    		}
+	    }
+	    if (ctype == 'mobile_change_password') {
+	    		// From 'mobile' to jump to 'mobile_change_password'
+	    		window.location.href = new_local.replace('mobile_index.html', 'mobile_change_password.html');
+	    }
+	    if (ctype == 'mobile_get_password') {
+	    		// From 'mobile' to jump to 'mobile_get_password'
+	    		window.location.href = new_local.replace('mobile_index.html', 'mobile_get_password.html');
+	    }
+	}			
+	function refreshCaptcha(){
+	    var img = document.images['captcha'];
+	    img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
+	}
+</script>	
+	<script type="text/javascript">
+		function switch_lang(page){
+			var randomnumber = Math.floor(Math.random()*100000);
+			window.location.href='./'+page+'?randomnumber='+randomnumber;
+		}
+	</script>
+</head>
+<body>
+<div class="wrapper"> 
+	<div class="top">
+		<div class="inner-wrapper">
+			<div class="form-wrapper" id="js-form-wrapper">
+				<div class="logo">
+					<img src="./images/logo_mobile.gif?t=694" style="width:105px;height:85px;">
+				</div>
+				<div class="divline"></div>
+				<div class='titles'>
+					<ul>
+						<li class='sub-title'>User Authentication System</li>
+					</ul>
+				</div>
+			</div>
+			<div class="switch_language_class" style="text-align: center;display:none;">
+				<label class="cLang"><a href=# onclick="switch_lang('pre_mobile_index.html');"><span style="color: #C0C0C0 !important;">中文</span></a>&nbsp;|&nbsp;<span style="color: #FFF !important; font-weight:900 !important;">English</span></label>
+		  </div>
+			<div class="mobi-front">
+			<div class="view view-signin " id="signin">
+			<form name="loginForm" method="post" action="/login" id="loginForm" class="zu-side-login-box">
+				<input type=hidden id="uri" name='uri'>
+				<input type=hidden id="terminal" name="terminal" value='mobile'>
+				<input type=hidden id="page_language" name='page_language' value="en">
+				<input type=hidden id="login_type" name="login_type" value=''>
+				<input type=hidden id="show_change_password" name='show_change_password' value="none">
+				<input type=hidden id="short_message" name='short_message' value="none">
+				<input type=hidden id="show_captcha" name='show_captcha' value="none">
+				<input type=hidden id="show_assure" name='show_assure' value="none">
+				<div class="title clearfix">
+					<a href="#" class="js-signup signup-switch with-icon" onclick="switch_client('mobile_change_password');" style="display: none;">
+						change password<i class="icon-sign icon-sign-arrow"></i>
+					</a>
+					<a class="with-icon return" onclick="switch_client('pc');">
+					<i class="icon-sign icon-sign-arrow-l"></i><span class="js-title-label">PC Edition</span>
+					</a>
+				</div>
+				<div id="wxnotice" class="wxnotice_top_class" style="display:none;">
+							Please select one of the following ways to subscribe the Wechat official Accounts and then follow the prompts to free Internet access: <br />1. Search the Wechat official Accounts "(***)" <br />2. Search the WeChat ID "(***)"							<div class="wxnotice_strlen">	</div>						
+				</div>
+				<div id="mobile_message_form" style="display:block;">
+					<div class="email input-wrapper">
+						<input required id="username" name="username" tabindex="1" value="" placeholder="login account">
+					</div>
+					<div class="input-wrapper" style="display:none;">
+						<input id="assure_phone" name="assure_phone" type="text" tabindex="2" placeholder="phone number" tabindex="2">
+					</div>
+					<div class="input-wrapper">
+						<input required id="password1" name="password1" type="password" tabindex="2" placeholder="password">
+						<input id="password" name="password" type="hidden">
+					</div>
+					<div class="input-wrapper" style="display:none;">
+						<input id="captcha_value" name="captcha_value" placeholder="captcha" value="">
+					</div>
+					<div class="input-wrapper" style="display:none;">
+						<img title="next" src="/login/captcha.php?rand=1444411288" id='captcha' onclick="refreshCaptcha();">
+						<span style="margin-bottom:20px;">click to refresh</span>
+					</div>
+					<div class="button-wrapper command" id="get_password" style="display: none;">	
+						<input type="button" id="get_password_button" name="get_password_button" value="SMS password" class="sign-button" onclick="get_short_message_password();" />
+					</div>
+					
+					<div class="button-wrapper command">
+						<button type="button" class="sign-button sign-button-orange" id="submit_button_1" onclick="submitbutton('login');"><b class='sign-button-text'>Login</b></button>
+					</div>
+					<div class="signin-misc-wrapper clearfix">
+						<label class="remember-me">
+							<input id="save_user" name="save_user" value=1 type="checkbox" onclick="if(this.checked==false)form.save_pass.checked=false"> account
+						</label>
+						<label class="remeber-pass">
+							<input id="save_pass" name="save_pass" value=1 type="checkbox" onclick="if(this.checked==true)form.save_user.checked=true"> password
+						</label>	
+					</div>
+				</div>
+				
+				<div class="ft mobile">
+				<span class="dot">·</span>
+				<!--<a><i class="icon-sign icon-sign-ns"></i></a>-->
+				<a>Phone Edition</a>
+				</div>
+			</form>	
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<!--
+<div class="bottom">
+	<div class="inner-wrapper">
+		<div class="footer">
+		</div>
+	</div>
+</div>
+-->
+</div>
+<script type="text/javascript">
+	setSave();
+		/**for 认证前页面**/
+	if(WEBLOGIN_CONFIG.basic.check_before_page == 1) {		
+			Welcome.run({isWelcome: true, timeOut: WEBLOGIN_CONFIG.basic.check_before_page_time, url: WEBLOGIN_CONFIG.basic.before_page_index_real});
+	}
+	if(WEBLOGIN_CONFIG.basic.mobile_grid_title_font_size != '') {
+		$(".sub-title").css('font-size', WEBLOGIN_CONFIG.basic.mobile_grid_title_font_size);
+	}
+	if(WEBLOGIN_CONFIG.basic.mobile_grid_title_font_color != '') {
+		$(".sub-title").css('color', WEBLOGIN_CONFIG.basic.mobile_grid_title_font_color);
+	}	
+</script>
+</body>
+</html>

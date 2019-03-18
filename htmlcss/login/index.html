@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<link title=css1 href="./css/default.css" type=text/css rel=stylesheet>
+				<link title=css1 href="./css/defaultpush.css" type=text/css rel=stylesheet>
+				<link title=css1 href="./css/welcome.css" type=text/css rel=stylesheet>
+				<link title=css1 href="./css/readservice.css" type=text/css rel=stylesheet />
+				<link title=css1 href="./css/public.css?t=825" type=text/css rel=stylesheet>
+				<link title=css1 href="./css/newpc.css" type=text/css rel=stylesheet>
+				<script type="text/javascript" src="./js/jquery.min.js?ver=1.8.3"></script>
+				<script type="text/javascript" src="./js/niftycube.js"></script>
+				<script type="text/javascript" src="./js/crypt.js"></script>
+				<script type="text/javascript" src="./js/netentsec.js"></script>
+		        <script type="text/javascript" src="./js/verify.js"></script>
+				<script type="text/javascript" src="./js/wx.js"></script>
+				<script type="text/javascript" src="./js/noticeimage.js"></script>
+				<script type="text/javascript" src="./js/config.js"></script>
+				<!--[if lt IE 9]>
+				    <script type='text/javascript' src='./js/css3-mediaqueries.js'></script>
+				    <script type='text/javascript' src='./js/html5.js'></script>
+				<![endif]-->
+				
+				<!-- LANGUAGE file -->
+				<script type='text/javascript' src='./language/zh/errormsg.js'></script>
+				
+				<title>用户认证系统</title>
+				<script type="text/javascript">
+					function switch_lang(page){
+						var local = window.location.href;
+	
+						//To get the filepath
+						var position = local.indexOf('/', 10);
+						var new_local = local.substring(position);
+						
+						window.location.href = new_local.replace('index.html', page);
+					}
+				</script>
+		</head>
+		<body>
+				<form class="form-horizontal" action="/login" method="post" name="loginForm" id="loginForm">
+					<input type=hidden id="uri" name='uri'>
+					<input type=hidden id="terminal" name="terminal" value='pc'>
+					<input type=hidden id="login_type" name="login_type" value=''>
+					<input type=hidden id="check_passwd" name="check_passwd" value="0">
+                                        <input type=hidden id="pass_check1" name="pass_check1" value="0">
+                                        <input type=hidden id="pass_check2" name="pass_check2" value="0">
+                                        <input type=hidden id="pass_check3" name="pass_check3" value="0">
+                                        <input type=hidden id="pass_checklong" name="pass_checklong" value="">
+                                        <input type=hidden id="pass_checknum" name="pass_checknum" value="0">
+                                        <input type=hidden id="pass_checkletter" name="pass_checkletter" value="0">
+                                        <input type=hidden id="pass_checkcharacter" name="pass_checkcharacter" value="0">
+					<input type=hidden id="show_tip" name='show_tip' value="block">
+					<input type=hidden id="show_change_password" name='show_change_password' value="none">
+					<input type=hidden id="short_message" name='short_message' value="none">
+					<input type=hidden id="show_captcha" name='show_captcha' value="none">
+					<input type=hidden id="show_read" name='show_read' value="block">
+					<input type=hidden id="show_assure" name='show_assure' value="none">
+					<input type=hidden id="page_language" name='page_language' value="zh">
+					<div class="main">
+						<img class="login-head-img" src="./images/newpc/logo.png" alt="">
+						<img class="top-right" src="./images/newpc/top-right.png" alt="">
+						<img class="bottom-left" src="./images/newpc/bottom-left.png" alt="">
+							<!--head部分-->
+							<!-- <div id="head" class="head_c" style="display: none;">
+									<div style="position: absolute; left: 8%;">
+											<div id="head_logo" class="head_logo_c">
+											</div>
+											<div id="head_divide_line" class="head_divide_line_c"></div>
+											<div id="head_title" class="head_title_c">
+													用户认证系统											</div>
+											<div id="switch_language" class="switch_language_class" style="display:none;">
+												<label class="cLang"><span style="color:#3D9CE2 !important; font-weight:900 !important;">中文</span>&nbsp;|&nbsp;<a href=# onclick="switch_lang('eng_index.html');"><span style="color: #808583 !important;">English</span></a></label>
+										  </div>
+									</div>
+							</div> -->
+							<!--middle部分-->
+							<div id="middle" class="middle_c middle_show_c">													
+									<div class="content-bg">
+										<div style="width: 1240px;min-width: 1240px;margin: auto;position: relative;">
+												<img class="state" src="./images/newpc/txt-content-bg.png" alt="">
+												<div class="login-box">
+														<img class="box"  src="./images/newpc/login-box.png" alt="">
+														<!-- 主要登录信息 -->
+														<div id="middle_form" class="middle_form_show_c login-form" style="display: ;">
+															<h1 class="text-center	">账号密码登录</h1>
+																<div id="middle_message_form"  style="display:block;">
+																	<div id="username_div" class="control-group username_div_offset" style="height:auto!important;">
+																		<div class="controls account">
+																			<input type="text" class="input-large" id="username" name="username" placeholder="账号">
+																		</div>
+																	</div>
+																		<div id="assure_phone_div" class="control-group " style="height:auto;display:none;">
+																		<label class="control-label" for="assure_phone">手机号: </label>
+																		<div class="controls">
+																			<input type="text" class="input-large" id="assure_phone" name="assure_phone" value="" placeholder="用于接收、确认密码">
+																		</div>
+																	</div>
+																	<div id="password_div" class="control-group" style="height:auto!important;">
+																		<div class="controls password">
+																			<input type="password" class="input-large" id="password1" name="password1" placeholder="密码">
+																			<input id="password" name="password" type="hidden">
+																		</div>
+																	</div>
+																	<div id="new_password_div" class="change_password_public_div" style="display: none;">
+																		<label class="control-label" for="new_password">新密码: </label>
+																		<div class="controls">
+																			<input type="password" class="input-large" id="new_password" name="new_password" placeholder="新密码" value="">
+																		</div>
+																	</div>
+																	<div id="retry_password_div" class="change_password_public_div" style="display: none;">
+																		<label class="control-label" for="retype_newpassword">确认密码: </label>
+																		<div class="controls">
+																			<input type="password" class="input-large" id="retype_newpassword" name="retype_newpassword" placeholder="重复新密码" value="">
+																		</div>
+																	</div>
+																	<div id="captcha_div" class="change_password_public_div" style="display:none;">
+																		<label class="control-label" for="captcha_value">验证码: </label>
+																		<div class="controls">
+																			<input type="text" class="input-medium" id="captcha_value" name="captcha_value" value="" placeholder="请输入验证码">
+																			<img title="看不清，点击换一张" style="cursor:pointer;width:60px;height:27px;" src="/login/captcha.php?rand=572525223" id='captcha' onclick="refreshCaptcha();">
+																		</div>
+																	</div>
+																	<div id="get_password_button_div" class="login_button_div" style="margin-left: 102px;display: none;">
+																			<input id="get_password_button" name="get_password_button" class="middle_form_username_input_mobilepassword_button" style="width:223px;" value="短信获取密码" type="button" onclick="get_short_message_password();">
+																	</div>
+																	
+																	<div id="remember_div" class="remember_div">
+																		<div class="controls clearfix" style="width:70%;margin: auto!important;padding: 0 40px;">
+																			<label id="save_user_label" class="checkbox inline" style="*width: 100px;_padding-left:100px;float: left;">
+																				<input style="*width: 20px;" id="save_user" name="save_user" value=1 type="checkbox" onclick="if(this.checked==false)form.save_pass.checked=false">记住账号
+																			</label>
+																			<label id="save_password_label" class="checkbox inline" style="*width: 100px;float:right;">
+																				<input style="*width: 20px;" id="save_pass" name="save_pass" value=1 type="checkbox" onclick="if(this.checked==true)form.save_user.checked=true">记住密码
+																			</label>
+																		</div>
+																	</div>
+																	<div id="read_div" class="read_div" style="height:27px;display:block;">
+																		<div class="controls" style="width:70%;margin: auto!important;;text-align: left;">
+																			<label id="read_label" class="checkbox" style="*width: 230px;_padding-left:100px;">
+																				<input style="*width: 20px;" id="read" name="read" value=1 type="checkbox" checked="" onclick="click_readme();"><a href="#" onclick="click_readpage();">我已阅读上述说明并承诺遵守规定</a>
+																			</label>
+																		</div>
+																	</div>
+																	<div id="login_button_div" class="login_button_div login_button_div_offset" style="margin-left: 25px;margin-top: 40px;">
+																			<input type="button" id="submit_button_1" class="middle_form_login_c2" style="width:285px;float: left;" value="登录" onclick="submitbutton('login');">
+																			<a id="change_password_href" href="#" class="change_password_link" onclick="login_page_function_shift('1');" style="padding-left:100px;display: none;">修改密码</a>
+																	</div>
+																	<div id="change_password_button_div" class="login_button_div" style="margin-left: 102px;display: none;">
+																			<input type="button" class="middle_form_login_c2_e" style="width:105px;" value="修改密码" onclick="submitbutton('changepass');">
+																			<a href="#" class="change_password_link" onclick="login_page_function_shift('2');">返回登录</a>
+																	</div>
+																	<div style="clear:both;"></div>
+																</div>																						  
+																<div id="wechat" class="wechat_qrcode_bg" style="display:none">
+																	<div id="qrcode_default_div">
+																		<img id="qrcode_img_default" style="cursor:pointer;" src="images/weblogin/pre_qrcode.gif" class="qrcode_image_class">
+																		</div>
+																	<div id="qrcode_div" style="display: none;"></div>
+																	<div id="displaychat" class="wechat_displayinfo_class"></div>
+																</div>
+																<div id="wechatCaptcha" class="wechat_qrcode_bg" style="display:none">
+																	<div id="qrcode_captcha_img_div">
+																		<img id="qrcode_captcha_img" style="cursor:pointer;" src="images/qrcode/qrcode.jpg" class="qrcode_image_class">
+																		</div>
+																	<div id="displaychatCaptcha" class="wechat_displayinfo_class"></div>
+																</div>
+																<div class="change_password_public_div" style="display:none;">
+																	<label class="control-label" for="wx_captcha">验证码: </label>
+																	<div class="controls">
+																		<input style="width: 120px;" id="wx_captcha" name="wx_captcha" type="text" value="" placeholder="请输入微信验证码">
+																		<input type="button" class="middle_form_login_c2" style="width:105px;" value="登录" onclick="submitbutton('qrcode_captcha_login');">
+																	</div>
+																</div>
+														</div>
+														<!-- 登录成功提示 -->
+														<div style="position: absolute;top: 170px;	width: 80%;left: 10%;display: none;"> 
+																	<img src="./images//newpc/success-icon.png" alt="" style="width: 70px;">
+																	<h2 style="font-size: 24px;color: #3E88CD;">成功接入互联网!</h2>
+																	<p style="color: #3E88CD;">本次登录有效期为180天</p>
+														</div>
+												</div>
+										</div>
+									</div>
+									
+							</div>
+							<!--bottom部分-->
+							<div id="bottom" class="bottom_c" style="display: none;">
+									<div style="width: 300px;position: absolute; left: 8%;padding-top:10px;color: #808583;text-align: left;font-size: 8pt; font-family: Microsoft YaHei;">
+											如有问题，请联系信息技术部管理员									</div>
+									<div style="position: absolute; right: 8%;padding-top:10px;color: #808583;font-size: 8pt; font-family: Microsoft YaHei;">
+											华西证券股份有限公司									</div>
+							</div>
+							<div style="margin-top:10px; font-size: 14px;display: none;">
+		                <a href="#" onclick="switch_client('mobile');">手机版</a>
+		          </div>
+					</div>
+				</form>
+				<form class="form-horizontal" action="/login" method="post" name="qrcodeForm" id="qrcodeForm" style="display: none;">
+					<input type=hidden id="login_type" name="login_type" value='qrcode_login'>
+					<input type=hidden id="qrcode_username" name="qrcode_username" value="">
+					<input type=hidden id="qrcode_scene_id" name="qrcode_scene_id" value="">
+					<input type=hidden id="qrcode_nickname" name="qrcode_nickname" value="">
+					<input type=hidden id="qrcode_uri" name="qrcode_uri" value="">
+					<input type=hidden id="qrcode_page_language" name='qrcode_page_language' value="zh">
+				</form>
+				<script>
+						document.getElementById('uri').value=window.location.search.substr(1, window.location.search.length-1);
+						document.getElementById('qrcode_uri').value=window.location.search.substr(1, window.location.search.length-1);
+						if(document.getElementById('wechat') && document.getElementById('wechat').style.display != 'none'){
+								qrcodeInit();
+						}
+						setSave();
+
+					/**for 认证前页面**/
+					if(WEBLOGIN_CONFIG.basic.check_before_page == 1) {
+						Welcome.run({isWelcome: true,  timeOut: WEBLOGIN_CONFIG.basic.check_before_page_time, url: WEBLOGIN_CONFIG.basic.before_page_index_real.replace("/push/", "/")});
+					}
+							    		$("#middle").attr("class", "middle_c_notice middle_show_c");
+		    			    						if(WEBLOGIN_CONFIG.notice.notice_content_color != '') {
+						$(".middle_tip_c").css('color', WEBLOGIN_CONFIG.notice.notice_content_color);
+					}
+					if(WEBLOGIN_CONFIG.notice.notice_content_font_size != '') {
+						$(".middle_tip_c").css('font-size', WEBLOGIN_CONFIG.notice.notice_content_font_size);
+					}
+					if(WEBLOGIN_CONFIG.notice.notice_bg_color != '') {
+						$(".middle_tip_c").css('background-color', WEBLOGIN_CONFIG.notice.notice_bg_color);
+					}
+					if(WEBLOGIN_CONFIG.basic.grid_title_font_size != '') {
+						$(".head_title_c").css('font-size', WEBLOGIN_CONFIG.basic.grid_title_font_size);
+					}
+					if(WEBLOGIN_CONFIG.basic.grid_title_font_color != '') {
+						$(".head_title_c").css('color', WEBLOGIN_CONFIG.basic.grid_title_font_color);
+					}					
+				</script>
+				<script type="text/javascript" src="/js/weixin_apple.js"></script>
+	  </body>
+</html>

@@ -1,0 +1,598 @@
+body {
+		text-align:center; /*居中(便于IE下起作用)*/
+		background: #ffffff;
+		margin: 0 auto;
+}
+
+/* 整体样式 */
+.main{
+		margin:0 auto; /*居中firefox下起作用*/
+		text-align: center;  /*文字居左对齐*/
+		border:0px solid;
+		width:100%;
+		height: 100%;
+		height: auto !important;
+}
+
+/* head 整体样式*/
+.head_c{
+		width:100%;
+		min-width: 860px;
+		height: 95px;
+		background: url('../images/weblogin/default/head_background_img.gif');
+}
+
+/* head 分隔竖线图片样式 */
+.head_divide_line_c{
+		width: 2px;
+		height: 60px;	
+		float: left;
+		margin-left: 12px;
+		margin-top: 14px;
+		overflow:hidden;
+		background: url("../images/weblogin/default/head_divide_line.gif") repeat;
+}
+
+/* head 标题文字样式 */
+.head_title_c{
+		width: 600px;
+		height: 74px;
+		margin-left: 10px;
+		margin-top: 25px;
+		text-align: left;
+		line-height:60px;
+    		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+		font-size: 22pt;
+		color: #808583;
+		float: left;
+		overflow:hidden;
+}
+
+/* head logo图片样式 避免缓存*/
+.head_logo_c{
+    width: 155px;
+    height: 60px;
+    overflow:hidden;  /*固定宽度方式div拉伸*/
+    float:left;
+    margin-top: 14px;
+}
+
+/* 中间内容整体样式 */
+.middle_c{
+	  width: 1000px !important;
+    height: 410px;
+		margin: 0 auto;
+}
+
+.middle_c_notice{
+    height: 410px;
+    margin: 0 auto;
+}
+
+/* 中间左侧提示信息样式 */
+.middle_tip_c{
+		width: 370px;
+		height: 465px;
+		text-align: left;
+		line-height: 30px;
+		font-size: 10pt;
+		font-family: "Helvetica,Arial,sans-serif";
+		letter-spacing: 1px;
+		word-wrap:break-word;
+		margin-top: 35px;
+		float: left;
+		overflow-x:hidden; 
+		overflow-y:auto;
+		border:1px solid #dbdbdb;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+/* 中间右侧表单样式 */
+.middle_form_c{
+		width:370px;
+		height: 475px;
+		text-align: left;
+		margin-top: 35px;
+		float: left;
+		border:1px solid #dbdbdb;
+}
+.middle_form_head_c{
+		height: 30px;
+		background: url('../images/weblogin/default/form_head.gif');	
+}
+/*用户名文字样式*/
+.middle_form_username_c{
+		width: 100px;
+		height: 30px;
+		float: left;
+		margin-top: 2px;
+		margin-left: 10px;
+    text-align: right;
+		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+    font-weight: 900;
+		line-height:30px;
+		color: #808583;
+}
+/*用户名头部图片样式*/
+
+/*用户名文本框样式*/
+.middle_form_mobile_head_c{
+		width: 38px;
+		height: 30px;
+		float: left;
+		margin-top: 18px;
+		background: url('../images/weblogin/default/mobile.gif') no-repeat;
+}
+.middle_form_username_input_mobilepassword{
+		width: 97px;
+		height: 28px;
+		float: left;
+		margin-top: 18px;
+		line-height:28px;
+		background: url("../images/weblogin/default/username_tail.gif");
+		border:0px ;
+}
+.middle_form_username_input_mobilepassword_button{
+		width: 105px;
+		height: 30px;
+		background: url('../images/weblogin/default/get_mobile_password_1.gif') no-repeat;
+		border:0px ;
+		line-height: 16px;
+		font-size: 10pt;
+		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+		color: #3D9CE2;
+		cursor:pointer;
+}
+.middle_form_username_head_c{
+		width: 38px;
+		height: 30px;
+		float: left;
+		margin-top: 8px;
+		background: url('../images/weblogin/default/username.gif') no-repeat;
+}
+.middle_form_username_input_c{
+		width: 198px;
+		height: 28px;
+		float: left;
+		margin-top: 8px;
+		line-height:28px;
+		background: url("../images/weblogin/default/username_tail.gif");
+		border:0px ;
+}
+.middle_message_show{
+		display: block;
+}
+/*用户名文本框尾部竖线样式*/
+.middle_form_username_input_tail_c{
+		width: 1px;
+		height: 30px;
+		float: left;
+		margin-top: 8px;
+		line-height:28px;
+		background: url("../images/weblogin/default/username_tail_1.gif");
+		border:0px ;
+}
+/*密码文字样式*/
+.middle_form_password_c{
+		width: 100px;
+		height: 24px;
+		float: left;
+		margin-top: 2px;
+		margin-left: 10px;
+    text-align: right;
+		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+		font-weight: 900;
+		line-height:30px;
+		color: #808583;
+}
+.middle_form_password_c1{
+		width: 100px;
+		height: 24px;
+		float: left;
+		margin-left: 10px;
+}
+.middle_form_password_c2{
+		padding-top: 10px;
+}
+/*密码文本框尾部竖线样式*/
+.middle_form_password_input_tail_c{
+		width: 1px;
+		height: 30px;
+		float: left;
+		margin-top: 10px;
+		line-height:28px;
+		background: url("../images/weblogin/default/username_tail_1.gif");
+		border:1px ;
+}
+/*密码头部图片样式*/
+.middle_form_password_head_c{
+		width: 38px;
+		height: 30px;
+		float: left;
+		margin-top: 10px;
+		background: url('../images/weblogin/default/password.gif') no-repeat;
+}
+/*密码文本框样式*/
+.middle_form_password_input_c{
+		width: 198px;
+		height: 28px;
+		float: left;
+		margin-top: 10px;
+		line-height:28px;
+		background: url("../images/weblogin/default/username_tail.gif");
+		border:0px;
+}
+
+/*获取密码样式*/
+.middle_form_remember_c2{
+		width: 240px;
+		height: 34px;
+    line-height:12px;
+		font-size: 10pt;
+    font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+		float: left;
+		color: #808583;
+}
+
+/*记住用户名文字样式*/
+.middle_form_remember_c{
+		width: 240px;
+		height: 24px;
+    line-height:12px;
+		font-size: 10pt;
+    font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+		float: left;
+		color: #808583;
+}
+/*登录按钮样式*/
+.middle_form_login_c11{
+		width: 92px;
+		height: 30px;
+		float: left;
+		color: #808583;
+}
+.middle_form_login_c1{
+		width: 92px;
+		height: 30px;
+		float: left;
+		color: #808583;
+}
+.middle_form_login_c2{
+		width: 105px;
+		height: 30px;
+		background: url("../images/weblogin/default/get_mobile_password.gif") no-repeat;   
+		border:0px ;
+		color: #3D9CE2;
+		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+}
+.middle_form_login_c2_e{
+		width: 105px;
+		height: 30px;
+		background: url("../images/weblogin/default/get_mobile_password.gif") no-repeat;   
+		border:0px ;
+		color: #3D9CE2;
+		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+}
+.middle_form_login_c3{
+		width: 105px;
+		height: 30px;
+		background: url("../images/weblogin/default/get_mobile_password.gif") no-repeat;   
+		border:0px ;
+		color: #3D9CE2;
+		border:0px ;
+		line-height: 16px;
+		font-size: 10pt;
+		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+		cursor:pointer;
+}
+.middle_form_change_password_c{
+		width: 83px;
+		height: 30px;
+		background: url("../images/weblogin/default/login_button.gif") no-repeat;
+		border: 1px;
+		float: left;
+		margin-top: 10px;
+		margin-left: 30px;
+		border:0px ;
+}
+.middle_form_change_password_c1{
+		width: 63px;
+		height: 20px;
+		border: 1px;
+		float: left;
+    font-size: 10pt;
+    font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+		margin-top: 10px;
+		margin-left: 30px;
+		border:0px ;
+    color: #3d9ce2;
+}
+
+.remember_div{
+		height: 25px;
+}
+
+.read_div{
+		height: 27px;
+		color: #3D9CE2;
+}
+
+.change_password_public_div{
+		height: 35px;
+}
+
+/*登录*/
+
+.login_button_div {
+		*+margin-left: 102px;
+		margin-left: 100px;
+}
+
+.change_password_link{
+		font-size: 12px;
+		margin-left: 20px;
+		text-decoration: underline;
+		line-height:30px;
+}
+
+/* bottom整体样式 */
+.bottom_c{
+    margin-top: 125px;
+		width:100%;
+		min-width: 860px;
+		height: 50px;
+		background: #e8e8e8;
+}
+.bottom_cc{
+		width:100%;
+		height: 50px;
+		background: #e8e8e8;
+		position: absolute;
+		bottom: 30px;
+		left: 0;
+}
+
+.middle_change_password_show_c1{
+    display: none;
+}
+
+.middle_change_short_message_show_c1{
+    display: none;
+}
+
+.middle_change_short_message_show_c2{
+		height: 45px;
+    display: block;
+}
+/*验证码文字样式*/
+.middle_form_captcha_c{
+		width: 100px;
+		height: 30px;
+		float: left;
+		margin-top: 8px;
+		margin-left: 10px;
+    		text-align: right;
+		font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+    		font-weight: 900;
+		line-height:30px;
+		color: #808583;
+}
+.middle_form_captcha_head_c{
+		width: 1px;
+		height: 30px;
+		float: left;
+		margin-top: 8px;
+		background: url('../images/weblogin/default/username_tail_1.gif') no-repeat;
+}
+.middle_form_captcha_input_c{
+		width: 102px;
+		height: 28px;
+		float: left;
+		margin-top: 8px;
+		line-height:28px;
+		background: url("../images/weblogin/default/username_tail.gif");
+		border:0px ;
+}
+.middle_form_captcha_input_tail_c{
+		width: 1px;
+		height: 30px;
+		float: left;
+		margin-top: 8px;
+		line-height:28px;
+		background: url("../images/weblogin/default/username_tail_1.gif");
+		border:0px ;
+}
+/** 验证码*/
+.wechat_qrcode_bg{
+    width: 100%;  
+}
+.wechat_displayinfo_class{
+    font-size: 10pt;
+    font-weight: normal;
+    line-height:20px;
+    text-align: center;
+}
+
+#qrcode{
+		text-align: center;	
+}
+#qrcode_div{
+		text-align: center;	
+}
+#qrcode_default_div{
+		text-align: center;	
+}
+#qrcode_captcha_img_div {
+		text-align: center;	
+}
+
+.qrcode_image_class{
+    margin: 15px;
+    width:95px; 
+    height: 96px;
+}
+.qrcode_image_big_class{
+    margin-top: 15px; 
+    width:221px; 
+    height: 222px;
+}
+
+.wechat_qrcode_bg_big{
+    width: 100%;
+    height: 328px;
+}
+.wechat_displayinfo_big_class{ 
+    margin-top:5px;
+    margin-left: 12px;
+    font-size: 13pt;
+    font-weight: normal;
+    line-height:20px;
+    text-align: center;
+}
+
+/**图片滚动**/
+a { color:#213f71; font-size:9pt; text-decoration:none;}
+a:hover {color:#0066cc; }
+.blk_18 {
+    width: 550px;
+    height: 420px;
+    text-align: left;
+    line-height: 16px;
+    font-size: 10pt;
+    font-family: "proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif";
+    letter-spacing: 1px;
+    word-wrap:break-word;
+    float: left;    
+    overflow-x:hidden; 
+    overflow-y:auto;
+    zoom:1;
+    font-size:9pt;
+    /*border:1px solid #dbdbdb;*/
+    margin-top:35px;
+/*    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;*/
+}
+.blk_18 .pcont {
+    width:545px;
+    height:420px;
+    overflow:hidden;
+    padding-left:5px;
+}
+.blk_18 .ScrCont {
+    float:left;
+    width:32766px;
+    zoom:1;
+    margin-left:-6px;
+}
+.blk_18 #List1_1, .blk_18 #List2_1 {
+    float:left;
+    height: 450px;
+}
+.blk_18 .LeftBotton, .blk_18 .RightBotton {
+    width:15px;
+    height:74px;
+    float:left;
+    background:url(../images/weblogin/ax.gif) no-repeat;
+}
+.blk_18 .LeftBotton {
+    position: relative;
+    bottom: 300px;
+    background-position: 0 0;
+    margin:8px 5px 0;
+}
+.blk_18 .RightBotton {
+    bottom: 300px;
+    left: 500px;
+    position: relative;
+    background-position: 0 -100px;
+    margin:8px 1px 10px 5px;
+}
+.blk_18 .LeftBotton:hover {
+    background-position: -20px 0;
+}
+.blk_18 .RightBotton:hover {
+    background-position: -20px -100px;
+}
+.blk_18 .pl img {
+    height: 420px !important;
+    display:block;
+    cursor:pointer;
+    border:none;
+    margin:0px auto 0px auto;
+}
+.blk_18 .pl {
+    width:550px;
+    border:1px solid #f3f3f3;
+    float: left;
+    text-align:center;
+    line-height:24px;
+}
+.blk_18 a.pl:hover {
+    border:1px solid #5dacec;
+    color:#5dacec;
+    background:#fff;
+}
+
+.cLang{
+    position: absolute;
+    right: 0; 
+    top: 10px; 
+    font-size: 11pt;
+    color: #808583;
+}
+.switch_language_class {
+    float: right;
+    margin-right: 200px;
+}
+@media only screen and (max-width: 1400px){
+		.head_c {
+				height: 60px;
+		}
+		.head_logo_c {
+				margin-top: 5px !important;
+				height: 50px;
+		}
+		.head_divide_line_c {
+				margin-top: 5px;
+				height: 50px;
+		}
+		.head_title_c {
+				margin-top: 5px;
+		}
+		.middle_tip_c {
+				margin-top: 10px;
+				height: 420px;
+		}
+		.middle_form_c {
+				margin-top: 10px;
+				height: 430px;
+		}
+		#middle label, input, button, select, textarea {
+				font-size: 12px !important;
+		}
+		.control-group {
+				height:20px !important;
+		}
+		.middle_form_head_c {
+				background: none;
+				height: 5px;	
+		}
+		.wechat_qrcode_bg {
+				height: 150px;	
+		}
+		.bottom_c {
+				margin-top: 35px;	
+		}
+		.blk_18 {
+				margin-top: 10px;
+				height: 430px;	
+		}		
+		.blk_18 .pcont {
+				height: 430px;
+		}
+		.blk_18 .pl img {
+    		height: 430px !important;
+    }
+}

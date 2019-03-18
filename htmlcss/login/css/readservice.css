@@ -1,0 +1,43 @@
+/** 认证前登陆页面 **/
+#readContainer {
+	margin:0 auto; /*居中firefox下起作用*/
+	text-align: center;  /*文字居左对齐*/
+	z-index: 1000;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	-moz-opacity: 0.9;
+	background-color: #ccc;
+	opacity: .90;
+	filter: alpha(opacity=90);
+	max-width:707px;
+	width:100%;
+	height: 601px;
+	display: none;
+	border-radius:6px;
+/*				zoom: 1;*/
+}
+.read_btn_go
+{
+	width:99%;
+	height:42px;
+	border:none;
+	color:#fff;
+	text-shadow:1px 1px 1px #000;
+	background-color:#00b4e1;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#00b4e1), to(#003271));
+	background:-moz-linear-gradient(top, #00b4e1, #003271);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00b4e1,endColorstr=#003271,grandientType=1);
+	font-size:16px;
+	font-family:Microsoft YaHei;
+	border-radius:6px;
+	cursor:pointer;
+	margin-top:5px;
+}
+.read_btn_go:active
+{
+	background-color:#003271;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#003271), to(#00b4e1));
+	background:-moz-linear-gradient(top, #003271, #00b4e1);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#003271,endColorstr=#00b4e1,grandientType=1);
+}
