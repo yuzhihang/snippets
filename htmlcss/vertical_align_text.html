@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style> .son {
+        height: 50%;
+        background: blue;
+        color: #fff;
+    }
+
+    /* type 1*/
+    .son::before {
+        display: inline-block;
+        content: "";
+        height: 100%;
+        width: 20px;
+        backgound: yellow;
+        vertical-align: middle;
+    }
+
+    .father {
+        height: 100px;
+        background: red;
+    }
+
+    /* type 2*/
+    .son {
+        height: 100px;
+        background: blue;
+        line-height: 100px;
+        color: #fff;
+    }
+
+    /* type 3*/
+    .son {
+        display: table-cell;
+        height: 100px;
+        background: blue;
+        color: #fff;
+        vertical-align: middle;
+    }
+    </style>
+</head>
+<body>
+<div class='father'>
+    <div class="son">这是要居中的文字</div>
+</div>
+</body>
+</html>
