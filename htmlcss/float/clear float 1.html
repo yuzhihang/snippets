@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .p {
+
+            /* 加上边框可以恢复.div2 的margin top的有效性
+            border:1px solid;
+            */
+        }
+
+        /*.p::before{*/
+        /*   content:'b4';*/
+        /*    clear:both;*/
+        /*    display:block;//默认为inline*/
+        /*}*/
+
+        /* after 可以撑起.p before 不行
+
+        注意：如果一个元素里只有浮动元素，那它的高度会是0。如果你想要它自适应即包含所有浮动元素，那你需要清除它的子元素。一种方法叫做clearfix，即clear一个不浮动的 ::after 伪元素。
+
+        #container::after {
+            content: "";
+            display: block;
+            clear: both;
+            https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear
+        }*/
+        .p::after {
+            content: 'af';
+            clear: both;
+            display: block;
+        / / 默认为inline
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .div1 {
+            height: 100px;
+            width: 100px;
+            background: red;
+        }
+        /*margin-top无效
+        当应用于非浮动块时，它将非浮动块的边框边界移动到所有相关浮动元素外边界的下方。这个非浮动块的垂直外边距会折叠。
+        https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear
+        */
+        .div2 {
+            height: 100px;
+            margin-top: 200px;
+            clear: left;
+            border: 1px green solid;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="p">
+    <div class="div1 fl">12</div>
+    <div class="div2">33</div>
+</div>
+
+</body>
+</html>
