@@ -198,7 +198,7 @@ Content block’s width must be declared to be no wider than 100% of the contain
 }
 
 .Center-Container.is-Inline:after {
-    content: ’;
+    content: '';
     height: 100%;
     margin-left: -0.25em; /* To offset spacing. May vary by font */
 }
