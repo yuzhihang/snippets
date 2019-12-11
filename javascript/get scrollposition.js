@@ -83,6 +83,10 @@ function getScrollOffsets(w){
 // }
 //
 // 如此即可实现滑动加载更多。
+
+
+////================================================================
+
 /*
 *JQ的offset().top与JS的getBoundingClientRect区别详解，JS获取元素距离视窗顶部可变距离
  壹 ❀ 引
@@ -237,3 +241,235 @@ parent.onscroll = function () {
 那么到这里，本文结束。
 *
 * */
+
+////================================================================
+/*
+JavaScript 监听元素是否进入/移出可视区域
+原创latency_cheng 发布于2018-12-11 23:13:27 阅读数 2902  收藏
+展开
+JavaScript 监听元素是否进入/移出可视区域
+常规操作
+防抖节流
+IntersectionObserver
+兼容的代码
+常规操作
+  通常的做法是，监听srcoll事件，根据元素的offset来判断。
+
+window.addEventListener('scroll', this.scrollHandle, true);
+  使用getBoundingClientRec()来获取元素的位置。
+
+scrollHandle () {
+    const offset = this.$el.getBoundingClientRect(); // vue中，使用this.$el获取当前组件的根元素
+    const offsetTop = offset.top;
+    const offsetBottom = offset.bottom;
+    const offsetHeight = offset.height;
+    // 进入可视区域
+    if (offsetTop <= window.innerHeight && offsetBottom >= 0) {
+        console.log('进入可视区域');
+        // do something...
+    } else {
+        console.log('移出可视区域');
+        // do something...
+    }
+}
+
+  记得在适当的时候移除事件监听
+
+window.removeEventListener('scroll', this.scrollHandle, true);
+  但是这种操作，使得我们的开销变得很大，所以可以考虑防抖和节流。
+
+防抖节流
+  关于防抖和节流，看过不一样的理解，有的人认为防抖和节流是一个意思，在这里，按照我的理解，给防抖和节流的定义如下：
+  防抖：在停止触发一段时间后再调用方法；
+  节流：再一段时间内至少调用一次方法；
+  具体的原理就不讲了，直接上代码，iselapsed参数表示是否等待上一次，也就是iselapsed为true，则为节流。
+
+/**
+ * 防抖节流
+ * @param {*} action 回调
+ * @param {*} delay 等待的时间
+ * @param {*} context this指针
+ * @param {Boolean} iselapsed 是否等待上一次
+ * @returns {Function}
+ */
+// function throttle (action, delay, context, iselapsed) {
+//     let timeout = null;
+//     let lastRun = 0;
+//     return function () {
+//         if (timeout) {
+//             if (iselapsed) {
+//                 return;
+//             } else {
+//                 clearTimeout(timeout);
+//                 timeout = null;
+//             }
+//         }
+//         let elapsed = Date.now() - lastRun;
+//         let args = arguments;
+//         if (iselapsed && elapsed >= delay) {
+//             runCallback();
+//         } else {
+//             timeout = setTimeout(runCallback, delay);
+//         }
+//         /**
+//          * 执行回调
+//          */
+//         function runCallback() {
+//             lastRun = Date.now();
+//             timeout = false;
+//             action.apply(context, args);
+//         }
+//     };
+// }
+//
+// 在这里，我希望方法在一段时间内至少执行一次，所以我用节流
+//
+// window.addEventListener('scroll', this.scrollHandle, true);
+// this.scrollHandle = throttle(this.scrollThrottle, 200, this, true)
+// scrollThrottle () {
+//     const offset = this.$el.getBoundingClientRect();
+//     const offsetTop = offset.top;
+//     const offsetBottom = offset.bottom;
+//     const offsetHeight = offset.height;
+//     // 进入可视区域
+//     if (offsetTop <= window.innerHeight && offsetBottom >= 0) {
+//         console.log('进入可视区域');
+//         // do something...
+//     } else {
+//         console.log('移出可视区域');
+//         this.enabledPause = false;
+//         // do something...
+//     }
+// }
+// IntersectionObserver
+// 安卓设备和部分浏览器支持IntersectionObserver来通知我们元素进入/移出可视区域。
+//   判断是否支持IntersectionObserver：
+//
+// if ('IntersectionObserver' in window &&
+//     'IntersectionObserverEntry' in window &&
+//     'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+//     // do something
+// }
+// 创建IntersectionObserver,并传入回调，指定进入/移出可视区域时的操作。还可以传入一个对象（{threshold, root}），用来配置IntersectionObserver。
+//   threshold属性决定了什么时候触发回调函数。它是一个数组，每个成员都是一个门槛值，例如[0, 0.25, 0.5, 0.75, 1]。默认为[0]，即交叉比例（intersectionRatio）达到0时触发回调函数。
+//   root属性用来指定根元素。
+//   callback函数的参数entries是一个数组，每个成员都是一个IntersectionObserverEntry对象，其中的intersectionRatio属性表示监听的元素与根元素的交叉的比例，>0则表示此时进入可视区域。
+//
+// this.observer = new IntersectionObserver(entries => {
+//     if (entries[0].intersectionRatio > 0) {
+//         console.log('进入可视区域');
+//         // do something
+//     } else {
+//         console.log('移出可视区域');
+//         // do something
+//     }
+// });
+// 开始监听
+//
+// this.observer.observe(this.$el);
+// 取消监听
+//
+// this.observer.disconnect();
+// 兼容的代码
+// 因为iOS不支持IntersectionObserver，所以我们要在不支持的时候继续监听scroll事件。
+//   贴上完整的代码
+//
+// import throttle from '../throttle.js';
+// export default {
+//     data () {
+//         return {
+//             observer: null,
+//             scrollHandle: throttle(this.scrollThrottle, 200, this, true)
+//         };
+//     },
+//     mounted () {
+//         // 判断是否支持 IntersectionObserver
+//         if ('IntersectionObserver' in window &&
+//             'IntersectionObserverEntry' in window &&
+//             'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+//             this.observer = new IntersectionObserver(entries => {
+//                 if (entries[0].intersectionRatio > 0) {
+//                     console.log('进入可视区域');
+//                     // do something
+//                 } else {
+//                     console.log('移出可视区域');
+//                     // do something
+//                 }
+//             });
+//         }
+//     },
+//     methods: {
+//         startObserve () {
+//             if (this.observer) {
+//                 this.observer.observe(this.$el);
+//             } else {
+//                 window.addEventListener('scroll', this.scrollHandle, true);
+//             }
+//         },
+//         endObserve () {
+//             if (this.observer) {
+//                 this.observer.disconnect();
+//             } else {
+//                 window.removeEventListener('scroll', this.scrollHandle, true);
+//             }
+//         },
+//         scrollThrottle () {
+//             const offset = this.$el.getBoundingClientRect();
+//             const offsetTop = offset.top;
+//             const offsetBottom = offset.bottom;
+//             const offsetHeight = offset.height;
+//             // 进入可视区域
+//             if (offsetTop <= window.innerHeight && offsetBottom >= 0) {
+//                 console.log('进入可视区域');
+//                 // do something
+//             } else {
+//                 console.log('移出可视区域');
+//                 // do something
+//             }
+//         }
+//     }
+// }
+//
+// throttle.js
+//
+// /**
+//  * 回调节流
+//  *
+//  * @export
+//  * @param {*} action 回调
+//  * @param {*} delay 等待的时间
+//  * @param {*} context this指针
+//  * @param {Boolean} iselapsed 是否等待上一次
+//  * @returns {Function}
+//  */
+// export default function throttle (action, delay, context, iselapsed) {
+//     let timeout = null;
+//     let lastRun = 0;
+//     return function () {
+//         if (timeout) {
+//             if (iselapsed) {
+//                 return;
+//             } else {
+//                 clearTimeout(timeout);
+//                 timeout = null;
+//             }
+//             // return;
+//         }
+//         let elapsed = Date.now() - lastRun;
+//         let args = arguments;
+//         if (iselapsed && elapsed >= delay) {
+//             runCallback();
+//         } else {
+//             timeout = setTimeout(runCallback, delay);
+//         }
+//         /**
+//          * 执行回调
+//          */
+//         function runCallback() {
+//             lastRun = Date.now();
+//             timeout = false;
+//             action.apply(context, args);
+//         }
+//     };
+// }
+//  */
