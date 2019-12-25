@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script src="vendor/CodeMirror-2.33/lib/codemirror.js"></script>
+  <script src="vendor/glsl.js"></script>
+  <script src="vendor/numeric-1.2.2.min.js"></script>
+  <script src="vendor/jquery-1.8.1.min.js"></script>
+  <script src="vendor/underscore-min.js"></script>
+  <script src="vendor/xregexp-min.js"></script>
+  <script src="vendor/jquery.tipsy.js"></script>
+  <script src="vendor/rAF.js"></script>
+  <script src="vendor/lzma/lzma.js"></script>
+
+  <link rel="stylesheet" href="vendor/CodeMirror-2.33/lib/codemirror.css">
+  <link rel="stylesheet" href="vendor/tipsy.css">
+
+  <title>Pixel Shaders: An Interactive Introduction to Graphics Programming</title>
+  <link rel="stylesheet" href="vendor/ContrailOne/ContrailOne.css">
+
+  <style type="text/css">
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: georgia;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #282828;
+    margin: 96px 48px 144px 372px;
+  }
+  a {
+    color: #900;
+  }
+  a:hover {
+    color: #d00;
+  }
+
+  h1, h2, p, body > ul, body > ol {
+    max-width: 540px;
+  }
+
+  h1, h2 {
+    font-family: 'Contrail One';
+    color: #000;
+    font-weight: normal;
+  }
+
+  h1 {
+    font-size: 42px;
+    margin-bottom: 30px;
+  }
+  .big, .sub, .byline {
+    font-family: 'Contrail One';
+/*    font-weight: bold;*/
+    line-height: 1.2;
+  }
+  .big {
+    font-size: 84px;
+  }
+  .sub {
+    font-size: 36px;
+    color: #666;
+  }
+  .red {
+    color: #b00;
+  }
+  .byline {
+    margin-top: 15px;
+    font-size: 18px;
+
+  }
+  .title {
+    width: 540px;
+    margin: 90px 0px 60px 0px;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin-top: 48px;
+    margin-bottom: 24px;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  </style>
+</head>
+<body>
+
+
+  <div id="logo" style="position: absolute; width: 210px; height: 210px; top: 102px; left: 114px;"></div>
+  <div id="logo-code" style="display: none"></div>
+
+  <div class="title">
+    <div class="big">Pixel Shaders</div>
+    <div class="sub">An <span class="red">Interactive Introduction</span><br />to Graphics Programming</div>
+    <div class="byline">by <a href="http://tobyschachman.com/">Toby Schachman</a></div>
+  </div>
+
+  <h2 id="proposal"><a href="proposal/index.html">Proposal</a></h2>
+
+  <p>Describes the project and serves as a proof of concept for an <em>interactive book</em>.</p>
+
+  <h2 id="sample_chapter"><a href="sample/index.html">Sample Chapter</a></h2>
+
+  <p>Covers the basics of pixel shaders. Features an experimental exercises interface where the reader is asked to create specific pictures in response to the material.</p>
+
+  <h2><a href="examples/index.html">Shader Examples</a></h2>
+
+  <p>A series of step-by-step live shader examples covering many topics. No text yet but should be decipherable with a little exploration.</p>
+
+  <h2 id="shader_editor"><a href="editor/index.html">Shader Editor</a></h2>
+
+  <p>A fullscreen editor interface featuring a gallery of advanced shader topics that will be covered in the book.</p>
+
+  <div style="height: 48px"></div>
+
+  <h2 id="extras">Extras</h2>
+
+  <ul>
+  <li><p><a href="http://journal.pixelshaders.com/">Journal</a> <br />
+  Less an official blog and more a historical record for anyone who wants to do a similar project.</p></li>
+  <li><p><a href="external.html">Links</a> <br />
+  A compiled list of external shader resources&#8212;documentation, examples, inspiration.</p></li>
+  </ul>
+
+
+
+
+  <!-- <p>This is the future home for an interactive book about programming the graphics processor.</p>
+
+  <ul>
+    <li><p>
+      <a href="proposal/">Proposal and Proof-of-Concept</a><br />
+      This document describes the project, motivations, and intended audience. It also demonstrates live, interactive examples interspersed in the text.
+    </p></li>
+    <li><p>
+      <a href="editor/basics.html">Pixel Shader Basics (Sample)</a><br />
+      An in-progress draft of the first chapter of the book.
+    </p></li>
+    <li><p>
+      <a href="misc/kaleido/">Raytracing Kaleidoscope (Sample)</a><br />
+      Draft and mockup of the first part of the raytracing chapter, showing how to make a generalized 2D kaleidoscope effect.
+    </p></li>
+    <li><p>
+      <a href="editor/fullscreen.html#quasi">Fullscreen Editor</a><br />
+      In-progress fullscreen live editor. Currently loaded up with some quasicrystal code.
+    </p></li>
+    <li><p>
+      <a href="external.html">External Resources</a><br />
+      In case the above material has inspired an insatiable appetite for shader knowledge, here's a compiled list of further resources.
+    </p></li>
+  </ul> -->
+
+
+<script src="editor/compiled/app.js"></script>
+<script>
+require("pages/homepage")()
+</script>
+
+</body>
+</html>
