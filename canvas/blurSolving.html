@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport"
+                  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Document</title>
+            <style>
+                canvas {
+                    /*border: 1px solid black;*/
+                    /*width: 100%;*/
+                    /*height: 100%;*/
+                    width: 300px;
+                    height: 150px;
+
+                }
+
+                #container {
+                    width: 100%;
+                    height: 100%;
+                }
+            </style>
+        </head>
+<body>
+<div id="container">
+    <canvas id="myCanvas"></canvas>
+    <br>
+    <canvas id="myCanvas2"></canvas>
+</div>
+</body>
+<script>
+    function canvas_obj(ele) {
+        let returnable = {
+            canvas: ele,
+            ctx: ele.getContext("2d"),
+            dpi: window.devicePixelRatio
+        };
+        returnable.get = {
+            style: {
+                height() {
+                    return +getComputedStyle(ele).getPropertyValue("height").slice(0, -2);
+                },
+                width() {
+                    return +getComputedStyle(ele).getPropertyValue("width").slice(0, -2);
+                }
+            },
+            attr: {
+                height() {
+                    return returnable.ele.getAttribute("height");
+                },
+                width() {
+                    return returnable.ele.getAttribute("height");
+                }
+            }
+        };
+        returnable.set = {
+            style: {
+                height(ht) {
+                    ele.style.height = ht + "px";
+                },
+                width(wth) {
+                    ele.style.width = wth + "px";
+                }
+            },
+            attr: {
+                height(ht) {
+                    ele.setAttribute("height", ht);
+                },
+                width(wth) {
+                    ele.setAttribute("width", wth);
+                }
+            }
+        };
+        return returnable;
+    }
+
+    let canvas = canvas_obj(document.getElementById("myCanvas"));
+    let canvas2 = canvas_obj(document.getElementById("myCanvas2"));
+
+
+    requestAnimationFrame(animate);
+
+    requestAnimationFrame(animate2);
+
+    function dpi_adjust() {
+        let dpr = window.devicePixelRatio || 1;
+        let backingStore = ctx.backingStorePixelRatio ||
+            ctx.webkitBackingStorePixelRatio ||
+            ctx.mozBackingStorePixelRatio ||
+            ctx.msBackingStorePixelRatio ||
+            ctx.oBackingStorePixelRatio ||
+            ctx.backingStorePixelRatio || 1;
+        dpr /= backingStore
+        set.attr.height(get.style.height() * dpr);
+        set.attr.width(get.style.width() * dpr);
+        let scaleRatio = dpr;
+        ctx.setTransform(scaleRatio, 0, 0, scaleRatio, 0, 0);
+    }
+
+    function animate() {
+        let {ctx, dpi, set, get} = canvas;
+
+        ctx.strokeRect(50, 50, 250, 250);
+        ctx.strokeStyle = 'red';
+        ctx.strokeRect(50.5, 60.5, 250, 250);
+        // ctx.beginPath();
+        // ctx.fillRect(25, 50, 25, 25);
+        // ctx.beginPath();
+        // ctx.arc(500, 50, 300, 0, 2 * Math.PI);
+        // ctx.stroke();
+        ctx.font = "30px Arial";
+        // ctx.fillText("NF Hello World", 5, 30);
+        // requestAnimationFrame(animate);
+    }
+
+    function animate2() {
+        let {ctx, dpi, set, get} = canvas2;
+        set.attr.height(get.style.height() * dpi);
+        set.attr.width(get.style.width() * dpi);
+        ctx.lineWidth = 0.5;
+        let scaleRatio = dpi;
+        ctx.setTransform(scaleRatio, 0, 0, scaleRatio, 0, 0);
+        ctx.strokeRect(50, 2, 250, 250);
+        // ctx.strokeStyle = 'red';
+        ctx.strokeRect(50.5, 5.5, 250, 250);
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(50.75, 15.75, 250, 250);
+        // ctx.beginPath();
+        // ctx.fillRect(25, 50, 25, 25);
+        // ctx.beginPath();
+        // ctx.arc(500, 50, 300, 0, 2 * Math.PI);
+        // ctx.stroke();
+        ctx.font = "30px Arial";
+        // ctx.fillText("F Hello World", 5, 30);
+        // requestAnimationFrame(animate);
+    }
+</script>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
